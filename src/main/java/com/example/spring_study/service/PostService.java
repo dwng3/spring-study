@@ -1,6 +1,7 @@
 package com.example.spring_study.service;
 
 
+import com.example.spring_study.dto.CreatePostRequest;
 import com.example.spring_study.entity.Post;
 import org.springframework.http.ResponseEntity;
 
@@ -8,7 +9,7 @@ import java.util.List;
 
 public interface PostService {
 
-    public Post createPost(Post post);
+    public Post createPost(CreatePostRequest req);
 
     public List<Post> getAllPosts();
 

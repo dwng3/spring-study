@@ -1,7 +1,10 @@
 package com.example.spring_study.service;
 
+import com.example.spring_study.dto.CreatePostRequest;
 import com.example.spring_study.entity.Post;
+import com.example.spring_study.entity.User;
 import com.example.spring_study.repository.PostRepository;
+import com.example.spring_study.repository.UserRespository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,9 +16,18 @@ import java.util.List;
 public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;
+    private final UserRespository userRespository;
 
     @Override
-    public Post createPost(Post post) {
+    public Post createPost(CreatePostRequest req) {
+        User user = userRespository.findById(req.getUser_id())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        Post post = new Post();
+        post.setTitle(req.getTitle());
+        post.setContent(req.getContent());
+        post.setUser(user);
+
         return postRepository.save(post);
     }
 

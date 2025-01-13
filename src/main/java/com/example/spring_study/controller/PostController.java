@@ -1,5 +1,6 @@
 package com.example.spring_study.controller;
 
+import com.example.spring_study.dto.CreatePostRequest;
 import com.example.spring_study.entity.Post;
 import com.example.spring_study.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -16,8 +17,8 @@ public class PostController {
 
     // Create
     @PostMapping
-    public Post createPost(@RequestBody Post post) {
-        return postService.createPost(post);
+    public Post createPost(@RequestBody CreatePostRequest req) {
+        return postService.createPost(req);
     }
 
     // Read All
