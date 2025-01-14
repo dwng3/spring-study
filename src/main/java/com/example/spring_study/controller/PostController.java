@@ -4,8 +4,11 @@ import com.example.spring_study.dto.CreatePostRequest;
 import com.example.spring_study.entity.Post;
 import com.example.spring_study.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.naming.ldap.PagedResultsControl;
 import java.util.List;
 
 @RestController
@@ -25,6 +28,13 @@ public class PostController {
     @GetMapping
     public List<Post> getAllPosts() {
         return postService.getAllPosts();
+    }
+
+    // Read Pagenation
+    @GetMapping("/cursor")
+    public Page<Post> getPosts(@RequestParam(required = false) Long lastId,
+                               @RequestParam(defaultValue = "10") int limit) {
+        return postService.getNextPosts(lastId,limit);
     }
 
     // Read One

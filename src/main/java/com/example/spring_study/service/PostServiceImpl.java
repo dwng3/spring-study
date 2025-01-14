@@ -6,6 +6,9 @@ import com.example.spring_study.entity.User;
 import com.example.spring_study.repository.PostRepository;
 import com.example.spring_study.repository.UserRespository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +38,15 @@ public class PostServiceImpl implements PostService {
     public List<Post> getAllPosts() {
         return postRepository.findAll();
     }
+
+    @Override
+    public Page<Post> getNextPosts(Long lastId, int limit) {
+        if(lastId == null){
+            lastId = 0L;
+        }
+        return postRepository.findByIdGreaterThan(lastId, PageRequest.of(0, limit));
+    }
+
 
     @Override
     public ResponseEntity<Post> getPostById(Long id) {
