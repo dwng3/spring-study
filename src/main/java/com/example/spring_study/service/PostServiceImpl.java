@@ -1,6 +1,7 @@
 package com.example.spring_study.service;
 
 import com.example.spring_study.dto.CreatePostRequest;
+import com.example.spring_study.dto.CursorPaginationResponse;
 import com.example.spring_study.entity.Post;
 import com.example.spring_study.entity.User;
 import com.example.spring_study.repository.PostRepository;
@@ -8,7 +9,6 @@ import com.example.spring_study.repository.UserRespository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -40,11 +40,19 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Page<Post> getNextPosts(Long lastId, int limit) {
+    public CursorPaginationResponse<Post> getNextPosts(Long lastId, int limit) {
         if(lastId == null){
             lastId = 0L;
         }
-        return postRepository.findByIdGreaterThan(lastId, PageRequest.of(0, limit));
+        Page<Post> page = postRepository.findByIdGreaterThan(lastId, PageRequest.of(0, limit));
+        List<Post> posts = page.getContent();
+
+        String nextPage = null;
+        if(!posts.isEmpty()) {
+            Long lastPostId = posts.get(posts.size()-1).getId();
+            nextPage = "/post/cursor?lastId=" + lastPostId + "&limit=" + limit;
+        }
+        return new CursorPaginationResponse<>(posts, nextPage);
     }
 
 

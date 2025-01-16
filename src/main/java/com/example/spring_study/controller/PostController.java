@@ -1,6 +1,7 @@
 package com.example.spring_study.controller;
 
 import com.example.spring_study.dto.CreatePostRequest;
+import com.example.spring_study.dto.CursorPaginationResponse;
 import com.example.spring_study.entity.Post;
 import com.example.spring_study.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -32,8 +33,8 @@ public class PostController {
 
     // Read Pagenation
     @GetMapping("/cursor")
-    public Page<Post> getPosts(@RequestParam(required = false) Long lastId,
-                               @RequestParam(defaultValue = "10") int limit) {
+    public CursorPaginationResponse<Post> getPosts(@RequestParam(required = false) Long lastId,
+                                                   @RequestParam(defaultValue = "10") int limit) {
         return postService.getNextPosts(lastId,limit);
     }
 
