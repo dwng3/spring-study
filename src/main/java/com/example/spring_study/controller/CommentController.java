@@ -15,8 +15,8 @@ public class CommentController {
 
     private final CommentServiceImpl commentService;
 
-    @GetMapping
-    public List<Comment> getAllCommentsByPost(@RequestBody Long postId) {
+    @GetMapping("/{postId}")
+    public List<Comment> getAllCommentsByPost(@PathVariable Long postId) {
         return commentService.getAllCommentsByPost(postId);
     }
 
