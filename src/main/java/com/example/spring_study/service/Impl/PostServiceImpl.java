@@ -1,4 +1,4 @@
-package com.example.spring_study.service;
+package com.example.spring_study.service.Impl;
 
 import com.example.spring_study.dto.CreatePostRequest;
 import com.example.spring_study.dto.CursorPaginationResponse;
@@ -6,6 +6,7 @@ import com.example.spring_study.entity.Post;
 import com.example.spring_study.entity.User;
 import com.example.spring_study.repository.PostRepository;
 import com.example.spring_study.repository.UserRespository;
+import com.example.spring_study.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

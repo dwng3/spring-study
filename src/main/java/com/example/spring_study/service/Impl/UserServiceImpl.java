@@ -1,8 +1,9 @@
-package com.example.spring_study.service;
+package com.example.spring_study.service.Impl;
 
 import com.example.spring_study.dto.LoginRequest;
 import com.example.spring_study.entity.User;
 import com.example.spring_study.repository.UserRespository;
+import com.example.spring_study.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
