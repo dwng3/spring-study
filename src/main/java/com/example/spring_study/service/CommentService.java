@@ -1,7 +1,6 @@
 package com.example.spring_study.service;
 
 import com.example.spring_study.entity.Comment;
-import com.example.spring_study.entity.Post;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,4 +9,6 @@ import java.util.List;
 public interface CommentService {
 
     public List<Comment> getAllCommentsByPost(Long postId);
+
+    public Comment createComment(Long postId, Long userId, String content);
 }

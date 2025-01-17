@@ -1,12 +1,10 @@
 package com.example.spring_study.controller;
 
+import com.example.spring_study.dto.CreateCommentRequest;
 import com.example.spring_study.entity.Comment;
 import com.example.spring_study.service.Impl.CommentServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,5 +18,10 @@ public class CommentController {
     @GetMapping
     public List<Comment> getAllCommentsByPost(@RequestBody Long postId) {
         return commentService.getAllCommentsByPost(postId);
+    }
+
+    @PostMapping
+    public Comment createComment(@RequestBody CreateCommentRequest dto) {
+        return commentService.createComment(dto.getPostId(), dto.getUserId(), dto.getContent());
     }
 }
