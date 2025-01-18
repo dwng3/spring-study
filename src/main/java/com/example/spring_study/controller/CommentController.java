@@ -24,4 +24,4 @@ public class CommentController {
     public Comment createComment(@RequestBody CreateCommentRequest dto) {
         return commentService.createComment(dto.getPostId(), dto.getUserId(), dto.getContent());
     }
-}
+    }
