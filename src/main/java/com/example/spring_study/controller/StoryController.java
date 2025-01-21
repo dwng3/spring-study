@@ -1,14 +1,11 @@
 package com.example.spring_study.controller;
 
+import com.example.spring_study.dto.CreateStoryRequest;
 import com.example.spring_study.entity.Story;
-import com.example.spring_study.entity.User;
 import com.example.spring_study.service.Impl.StoryServiceImpl;
-import com.example.spring_study.service.StoryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +19,10 @@ public class StoryController {
     @GetMapping("/{userId}")
     public List<Story> getUserStories(@PathVariable Long userId) {
         return storyService.getUserStories(userId);
+    }
+
+    @PostMapping
+    public Story uploadStory(CreateStoryRequest dto) {
+        return storyService.uploadStory(dto.getUserId(), dto.getMediaUrl());
     }
 }

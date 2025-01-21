@@ -28,7 +28,11 @@ public class StoryServiceImpl implements StoryService {
     }
 
     @Override
-    public Story uploadStory(User user, String mediaUrl) {
+    public Story uploadStory(Long userId, String mediaUrl) {
+
+        User user = userRespository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("No user"));
+
         Story story = Story.builder()
                         .user(user)
                         .mediaUrl(mediaUrl)

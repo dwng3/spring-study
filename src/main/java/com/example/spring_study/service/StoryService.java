@@ -10,7 +10,7 @@ public interface StoryService {
 
     public List<Story> getUserStories(Long userId);
 
-    public Story uploadStory(User user, String mediaUrl);
+    public Story uploadStory(Long userId, String mediaUrl);
 
     public void deleteExpiredStories();
 }
