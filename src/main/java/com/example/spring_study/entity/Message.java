@@ -1,28 +1,25 @@
 package com.example.spring_study.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Builder
-public class Story {
+public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private User sender;
 
-    private String mediaUrl;
+    @ManyToOne
+    private User receiver;
 
-    private LocalDateTime createdAt;
+    private String content;
 
-    private LocalDateTime expiresAt;
-
+    private LocalDateTime timeStamp;
 }

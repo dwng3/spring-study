@@ -2,6 +2,7 @@ package com.example.spring_study.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.annotation.PreDestroy;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -36,4 +37,7 @@ public class User {
     @JsonIgnore
     private List<Comment> comments = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Story> storys = new ArrayList<>();
 }

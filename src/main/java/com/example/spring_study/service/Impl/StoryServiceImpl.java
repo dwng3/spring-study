@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class StoryServiceImpl implements StoryService {
                         .user(user)
                         .mediaUrl(mediaUrl)
                         .createdAt(LocalDateTime.now())
-                        .expiredAt(LocalDateTime.now().plusHours(24))
+                        .expiresAt(LocalDateTime.now().plusHours(24))
                         .build();
         return storyRepository.save(story);
     }
@@ -46,6 +47,14 @@ public class StoryServiceImpl implements StoryService {
     @Scheduled(cron = "0 0 * * * *") // 매시간 실행
     public void deleteExpiredStories() {
         List<Story> expiredStories = storyRepository.findAllByExpiresAtBefore(LocalDateTime.now());
+        if(!expiredStories.isEmpty()) {
+            for (Story story : expiredStories) {
+                File file = new File("uploads/" + story.getMediaUrl());
+                if(file.exists()) {
+                    file.delete();
+                }
+            }
+        }
         storyRepository.deleteAll(expiredStories);
     }
 }

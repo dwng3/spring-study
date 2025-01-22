@@ -4,7 +4,6 @@ import com.example.spring_study.dto.CreateStoryRequest;
 import com.example.spring_study.entity.Story;
 import com.example.spring_study.service.Impl.StoryServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +21,7 @@ public class StoryController {
     }
 
     @PostMapping
-    public Story uploadStory(CreateStoryRequest dto) {
+    public Story uploadStory(@RequestBody CreateStoryRequest dto) {
         return storyService.uploadStory(dto.getUserId(), dto.getMediaUrl());
     }
 }
