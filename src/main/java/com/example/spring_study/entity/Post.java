@@ -31,4 +31,10 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Comment> comments = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "collection_id", nullable = false)
+    private Collection collection;
+
+    private Long like;
 }
