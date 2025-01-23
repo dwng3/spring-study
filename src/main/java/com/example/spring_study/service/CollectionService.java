@@ -9,4 +9,6 @@ public interface CollectionService {
     public List<Collection> getCollectionList(Long userId);
 
     public Collection getCollectionById(Long id);
+
+    public Collection createCollection(String title);
 }

@@ -24,4 +24,12 @@ public class CollectionServiceImpl implements CollectionService {
         return collectionRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("No Collection"));
     }
+
+    @Override
+    public Collection createCollection(String title) {
+        Collection collection = new Collection(title);
+        return collectionRepository.save(collection);
+    }
+
+
 }

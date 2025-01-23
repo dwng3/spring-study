@@ -23,4 +23,9 @@ public class Collection {
     private List<Post> posts = new ArrayList<>();
 
     private LocalDateTime collectingTime;
+
+
+    public Collection(String title){
+        this.title = title;
+    }
 }
