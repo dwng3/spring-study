@@ -4,6 +4,7 @@ package com.example.spring_study.controller;
 import com.example.spring_study.entity.Collection;
 import com.example.spring_study.service.Impl.CollectionServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,5 +29,9 @@ public class CollectionController {
     @PostMapping
     public Collection createCollection(@RequestBody String title) {
         return collectionService.createCollection(title);
+    }
+
+    public ResponseEntity<String> addPost(@RequestBody Collection collection){
+        collectionService.
     }
 }
