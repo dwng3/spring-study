@@ -1,6 +1,7 @@
 package com.example.spring_study.controller;
 
 
+import com.example.spring_study.dto.AddPostCollectionDTO;
 import com.example.spring_study.entity.Collection;
 import com.example.spring_study.service.Impl.CollectionServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +32,8 @@ public class CollectionController {
         return collectionService.createCollection(title);
     }
 
-    public ResponseEntity<String> addPost(@RequestBody Collection collection){
+    @PostMapping("/{collectionId}/posts")
+    public ResponseEntity<String> addPostCollection(@PathVariable Long collectionId, @RequestBody AddPostCollectionDTO dto){
         collectionService.
     }
 }
