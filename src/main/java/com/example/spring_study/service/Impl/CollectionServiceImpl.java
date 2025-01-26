@@ -41,6 +41,7 @@ public class CollectionServiceImpl implements CollectionService {
             return false;
         }
         // 추가 로직 필요
+        // 리액트로 페이지 작성 필요
         return true;
     }
 
